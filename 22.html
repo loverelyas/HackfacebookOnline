@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>wait</title>
+  <meta http-equiv="refresh" content="5; url=33.html">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: black;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      font-size: 30px;
+    }
+
+    .characters {
+      display: flex;
+      flex-wrap: nowrap;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 300px;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      margin-right: 20px;
+    }
+
+    .character {
+      color: #00FF00;
+      animation: moveCharacter linear infinite;
+    }
+
+    @keyframes moveCharacter {
+      0% {
+        transform: translateY(-10vh);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+    
+  
+  </style>
+</head>
+<body>
+  <div class="characters">
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+  </div>
+  <script>
+    const columns = document.querySelectorAll('.column');
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-=_+[]{}|;:,.<>?';
+
+    function createCharacter() {
+      const character = document.createElement('span');
+      character.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+      character.classList.add('character');
+      character.style.animationDuration = `${Math.random() * 0.1 + 0}s`;
+      return character;
+    }
+
+    for (let column of columns) {
+      for (let i = 0; i < 50; i++) {
+        column.appendChild(createCharacter());
+      }
+    }
+  </script>
+</body>
+</html>

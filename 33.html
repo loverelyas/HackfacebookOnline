@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>hack account</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: #00FF00;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 80vh;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #introText{
+      color: #00FF00;
+      box-shadow: 10px 0 50px gold;
+      font-size: 17px;
+      font-family: monospace;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 20px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+     @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+      animation-duration: 3s; 
+    }
+
+    @keyframes erasing {
+      from {
+        width: 100%;
+      }
+      to {
+        width: 0;
+      }
+      animation-duration: 2s; 
+    }
+
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px #00FF00;
+      padding: 5px;
+      border-radius: 10px;
+      width: 200px;
+      margin-top: 50px;
+      margin-left: 10px;
+    }
+
+    input[type="email"], input[type="number"] {
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid #00FF00;
+      background-color: black;
+      color: #00FF00;
+      border-radius: 5px;
+      color: gold;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: 2px solid #00FF00;
+      background-color: black;
+      color: #00FF00;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .loading {
+      color: white;
+      margin-top: 20px;
+      display: none;
+      animation: moveText 1s infinite alternate;
+    }
+
+    @keyframes moveText {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(5px);
+      }
+    }
+
+    #password {
+      color: gold;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .characters {
+      display: flex;
+      flex-wrap: nowrap;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+    }
+
+   .column {
+     display: flex;
+     flex-direction: column-reverse;
+     align-items: center;
+     margin-right: 10px;
+   }
+  
+   .character {
+     color: red;
+     animation: moveCharacter linear infinite;
+   }
+  
+   @keyframes moveCharacter {
+     0% {
+       transform: translateY(-10vh);
+       opacity: 1;
+     }
+  
+     100% {
+       transform: translateY(110vh);
+       opacity: 0;
+     }
+   }
+   
+   #me{
+      color: cyan;
+      font-size: 16px;
+      font-family: monospace;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 20px;
+      position: relative;
+      left: 30%;
+      transform: translateX(-50%);
+    }
+    
+     .blink {
+      animation: blink-animation 2s steps(2, start) infinite;
+    }
+
+    @keyframes blink-animation {
+      to {
+        visibility: hidden;
+      }
+    }
+
+    </style>
+</head>
+<body>
+  <div id="introText">
+    Hack Facebook Accounts Online 
+    <span style="color: red;">{hx7}</span>
+  </div>
+
+  <div class="container">
+    <input type="email" id="email" placeholder="Enter Email" required>
+    <input type="number" id="phone" placeholder="Enter Phone Number" required>
+    <button onclick="generatePassword()">Broken</button>
+    <button style="color: red;" onclick="clearFields()">Reload</button>
+    <div class="loading" id="loading">Loading...</div>
+    <div id="password"></div>
+  </div>
+
+<div id=me>
+<span style="font-family: Verdana;"> WARNING <span class="blink">: </span>  </span> <br><br>
+    The Hacker BadaniXR 
+    <br><span style="color: gold;">{hx7}</span><br>
+   Don't play with me ...
+  </div>
+
+
+  <div class="characters">
+   <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+
+  </div>
+  <script>
+  function generatePassword() {
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const loading = document.getElementById('loading');
+      const passwordField = document.getElementById('password');
+      loading.style.display = 'block';
+
+      setTimeout(() => {
+        let password = '';
+
+        if (email) {
+          const splitEmail = email.split('@');
+          if (splitEmail.length === 2) {
+            const domain = splitEmail[1].split('.')[0];
+            const username = splitEmail[0];
+            password += generatePartialPassword(username) + generatePartialPassword(domain);
+          }
+        }
+        if (phone) {
+          password += generatePartialPassword(phone);
+        }
+        const extraCharacters = '!@#$%^&*()_+=-'; // الرموز المطلوبة
+        const randomCharacter = extraCharacters.charAt(Math.floor(Math.random() * extraCharacters.length));
+        const finalPassword = password.slice(0, 10) + randomCharacter; // تحديد الطول المحدد لكلمة المرور وإضافة الرمز
+       passwordField.innerHTML = `<span style="color: Gold;"> Generated Password: </span> <span style="color: #00FF00;">${finalPassword}</span>`;
+        loading.style.display = 'none';
+      }, 2000); 
+    }
+
+    function generatePartialPassword(input) {
+      const minLength = Math.min(3, input.length); // تحديد الطول المحدد للجزء من كلمة المرور
+      return input.slice(0, minLength);
+    }
+
+    function clearFields() {
+      document.getElementById('email').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('password').innerHTML = '';
+      
+    }
+  /////////
+    const textElement = document.getElementById('introText');
+    const text = textElement.textContent.trim();
+    let isTyping = true;
+
+    function displayText() {
+      textElement.style.animation = 'typing 5s steps(40, end) forwards';
+      setTimeout(eraseText, 8000);
+    }
+
+    function eraseText() {
+      textElement.style.animation = 'erasing 3s steps(40, end) forwards';
+      setTimeout(displayText, 4000); 
+    }
+    displayText();
+    
+    
+    // /////
+    const columns = document.querySelectorAll('.column');
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-=_+[]{}|;:,.<>?';
+
+    function createCharacter() {
+      const character = document.createElement('span');
+      character.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+      character.classList.add('character');
+      character.style.animationDuration = `${Math.random() * 5 + 2}s`;
+      return character;
+    }
+
+    for (let column of columns) {
+      for (let i = 0; i < 50; i++) {
+        column.appendChild(createCharacter());
+      }
+    }
+    
+  
+  </script>
+</body>
+</html>
